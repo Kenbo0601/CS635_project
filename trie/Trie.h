@@ -6,6 +6,7 @@ class Node
 public:
     Node(); // Constructor 
     Node* children[26]; // array of pointers to Node objects with a fixed size of 26.
+    char c; // store char in node 
     bool isWord; //mark the end of the word
 };
 

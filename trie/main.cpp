@@ -7,6 +7,7 @@ int main()
     Trie trie;
 
     //insert words 
+    trie.insert("apple");
 
     //search words 
 
