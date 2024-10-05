@@ -1,66 +1,85 @@
 #include "Trie.h"
-#include<iostream>
 
-
-/* Node class implementation */
-
-Node::Node() // Constructor
-{
-    c = '\0'; // Initialize char 
-    isWord = false; // set the variable to false
-    for(int i = 0; i < 26; ++i) 
-        children[i] = nullptr; //initialize all child pointers to null
+// Node class constructor
+Node::Node() {
+    isWord = false; // At initialization, no node is the end of a word
 }
 
-
-/* Trie class implementation */
-
-Trie::Trie() // Constructor
-{
-    root = new Node();
+// Trie class constructor
+Trie::Trie() {
+    root = new Node(); // Start with an empty root node
 }
 
-Trie::~Trie() // Destructor
-{
-    deleteTrie(root);
+// Trie class destructor
+Trie::~Trie() {
+    deleteTrie(root); // Recursively delete all nodes
 }
 
-void Trie::deleteTrie(Node* node) // recursive function for deleting nodes
-{
-    for(int i = 0; i < 26; ++i)
-    {
-        if(node->children[i] != nullptr)
-            deleteTrie(node->children[i]); // as long as node has children, go deeper in the trie
+// Recursively delete all nodes in the Trie
+void Trie::deleteTrie(Node* node) {
+    for (auto& child : node->children) {
+        deleteTrie(child.second); // Recursively delete child nodes
     }
-
-    delete node;
+    delete node; // Delete the current node
 }
 
-// const ensures that the word cannot be changed inside the function 
-// passing by reference(&) avoids copying the string
-void Trie::insert(const std::string& word)
-{
-    Node* node = root; // Initialize pointer to root for every insertion 
-    for(char c : word) // go through each character in word
-    {
-        // If the current character does not exist, store it 
-        if(node->children[c - 'a'] == nullptr) 
-        {
-            Node* newNode = new Node(); // create a new node 
-            node->children[c - 'a'] = newNode; // store new node to children 
-            newNode->c = c; // label new node with c 
-            std::cout << newNode->c<< std::endl;
+// Insert a word into the Trie
+void Trie::insert(const std::string& word) {
+    Node* current = root;
+    for (char c : word) {
+        // If the character is not already a child of the current node, create it
+        if (current->children.find(c) == current->children.end()) {
+            current->children[c] = new Node();
         }
-        node = node->children[c - 'a']; // otherwise, go to the idx in children where c exists.
+        current = current->children[c]; // Move to the next node (child)
     }
-
-    node->isWord = true; // mark the end of word 
+    current->isWord = true; // Mark the end of the word
 }
 
+// Search for a word in the Trie
+bool Trie::search(const std::string& word) const {
+    Node* current = root;
+    for (char c : word) {
+        if (current->children.find(c) == current->children.end()) {
+            return false; // If any character is not found, the word doesn't exist
+        }
+        current = current->children[c];
+    }
+    return current->isWord; // Return true if we reached the end of the word and it's marked as a word
+}
 
-// declare a function as const to indicate that the function does not modify the state of the object. 
-// it guarantees that the function won't change any member variables of the object.
-bool Trie::search(const std::string& word) const
-{
-    return false;
+// Helper function to find all words in the Trie recursively
+void Trie::findAllWords(Node* node, std::string currentWord, std::vector<std::string>& words) const {
+    if (node->isWord) {
+        words.push_back(currentWord); // If this node marks a word, add it to the list
+    }
+    for (const auto& child : node->children) {
+        findAllWords(child.second, currentWord + child.first, words); // Recursively find all children
+    }
+}
+
+// Print all words in the Trie
+void Trie::printAllWords() const {
+    std::vector<std::string> words;
+    findAllWords(root, "", words); // Find all words starting from the root
+    for (const auto& word : words) {
+        std::cout << word << std::endl; // Print each word
+    }
+}
+
+// Helper function to search for words containing the given substring
+void Trie::searchWithSubstring(Node* node, std::string currentWord, const std::string& substring, std::vector<std::string>& wordsWithSubstring) const {
+    if (node->isWord && currentWord.find(substring) != std::string::npos) {
+        wordsWithSubstring.push_back(currentWord); // If the word contains the substring, add it to the list
+    }
+    for (const auto& child : node->children) {
+        searchWithSubstring(child.second, currentWord + child.first, substring, wordsWithSubstring); // Recursively find all children
+    }
+}
+
+// Modular method to find all words that contain the given substring
+std::vector<std::string> Trie::findWordsWithSubstring(const std::string& substring) const {
+    std::vector<std::string> wordsWithSubstring;
+    searchWithSubstring(root, "", substring, wordsWithSubstring); // Find words containing the substring
+    return wordsWithSubstring;
 }
