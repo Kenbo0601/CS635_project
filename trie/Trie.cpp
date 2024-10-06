@@ -40,18 +40,18 @@ void Trie::deleteTrie(Node* node) // recursive function for deleting nodes
 // passing by reference(&) avoids copying the string
 void Trie::insert(const std::string& word)
 {
-    Node* node = root; // Initialize pointer to root for every insertion 
+    Node* node = root; // Initialize pointer to root 
     for(char c : word) // go through each character in word
     {
         // If the current character does not exist, store it 
-        if(node->children[c - 'a'] == nullptr) 
+        if(node->children[c-'a'] == nullptr) 
         {
             Node* newNode = new Node(); // create a new node 
-            node->children[c - 'a'] = newNode; // store new node to children 
+            node->children[c-'a'] = newNode; // store new node to children 
             newNode->c = c; // label new node with c 
             std::cout << newNode->c<< std::endl;
         }
-        node = node->children[c - 'a']; // otherwise, go to the idx in children where c exists.
+        node = node->children[c-'a']; // otherwise, go to the idx in children where c exists.
     }
 
     node->isWord = true; // mark the end of word 
@@ -62,5 +62,16 @@ void Trie::insert(const std::string& word)
 // it guarantees that the function won't change any member variables of the object.
 bool Trie::search(const std::string& word) const
 {
-    return false;
+    Node* node = root; // initialize a pointer to root 
+
+    for(char c : word)
+    {
+        if(node->children[c-'a'] == nullptr) // word does not exist in trie, so return false
+            return false;
+        
+        node = node->children[c-'a']; // move the current pointer to its child where c exists.
+    }
+
+    // ex: insert apple into trie, search for "app" and it exists but not the end of the word so return false
+    return node->isWord; // return true if its the end of the word 
 }
