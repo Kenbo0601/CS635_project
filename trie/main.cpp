@@ -5,6 +5,10 @@
 #include "Trie.h"
 
 
+/* Function Declaration */ 
+void printTestHeader(const std::string& testCase); // print header 
+
+
 int main()
 {
     Trie trie;
@@ -19,11 +23,12 @@ int main()
     std::cout << "Printing all the words in the tree..." << std::endl;  
     trie.printAllWords(); 
 
-    //search words 
-    std::vector<std::string> search_words = {"app", "cat","mazda"}; //search words vector
+    //TEST: Search words
+    printTestHeader("Search words");
+    std::vector<std::string> search_words = {"app", "cat","mazda","minecraft","ramen"}; //search words vector
     for(const std::string& s: search_words) // loop thorugh the array and search each word in trie
     {
-        std::cout << "Search word: " << s << std::endl;
+        std::cout << "Search word: " << s << " - ";
         if(trie.search(s)) // if word exists, print true
             std::cout << "True" << std::endl;
         else // otherwise print false 
@@ -31,4 +36,9 @@ int main()
     }
 
     return 0;
+}
+
+/* Function Implementation */
+void printTestHeader(const std::string& testCase) {
+    std::cout << "=== Test Case: " << testCase << " ===\n";
 }
