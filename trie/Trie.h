@@ -1,3 +1,7 @@
+#ifndef TRIE_H
+#define TRIE_H
+
+
 #include<string>
 
 // Node class 
@@ -14,12 +18,17 @@ public:
 class Trie 
 {
 private:
-    Node* root; 
-    void deleteTrie(Node* node);
+    Node* root; // pointer to root node
+    void deleteTrie(Node* node); // recursive private method for deleting trie tree
+    void printWordsRec(Node* node, std::string word); // recursive private method for traversing tree and print all the words
 public:
     Trie(); // constructor
     ~Trie(); // destructor 
 
     void insert(const std::string& word); // function to insert a word into trie
     bool search(const std::string& word) const; // function to search a word in trie
+    void printAllWords(); // wrapper function for printing the words stored in the tree
 };
+
+
+#endif TRIE_H
