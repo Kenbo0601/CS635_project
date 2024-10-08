@@ -1,25 +1,26 @@
-#include<string>
+#include<vector>
 
-// Node class 
-class Node 
-{
+class TrieNode{
 public:
-    Node(); // Constructor 
-    Node* children[26]; // array of pointers to Node objects with a fixed size of 26.
-    char c; // store char in node 
-    bool isWord; //mark the end of the word
+    std::vector<TrieNode*> children;
+    bool word;
+
+    //constructor of TrieNode
+    TrieNode();
 };
 
-// Trie class 
-class Trie 
-{
-private:
-    Node* root; 
-    void deleteTrie(Node* node);
-public:
-    Trie(); // constructor
-    ~Trie(); // destructor 
 
-    void insert(const std::string& word); // function to insert a word into trie
-    bool search(const std::string& word) const; // function to search a word in trie
+class Trie {
+private:
+    TrieNode* root;
+
+    void printWords(TrieNode* node, std::string currentWord) const;
+
+    //constructor of WordDictionarys
+public:
+    Trie();
+
+    void addWord(const std::string& word); //function to add word into trie
+    bool search(const std::string& word) const;  //fucntion to search a word in trie
+    void print()const; //print all words in Trietree
 };
