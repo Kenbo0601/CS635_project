@@ -7,7 +7,7 @@
   -  To compile: make
   -  Remove executable file: make clean
 
-## Assignment2: BST with Multiple Design Patterns
+## Assignment2: BST With Multiple Design Patterns
   -  Language: Python 
   -  Applied Design Patterns
      -  Internal Iterator 
