@@ -7,9 +7,14 @@
   -  To compile: make
   -  Remove executable file: make clean
 
-## Assignment2: BST with multiple design patterns
+## Assignment2: BST with Multiple Design Patterns
   -  Language: Python 
-  -  Project Directories
+  -  Applied Design Patterns
+     -  Internal Iterator 
+     -  Strategy 
+     -  Null Object
+     -  Visitor
+  -  Project Structure
       ```
       project/
       ├── tree_nodes.py         # Contains TreeNodeInterface, TreeNode, NullNode
