@@ -22,6 +22,7 @@ class TreeNode(TreeNodeInterface):
 
     def __repr__(self):
         return f"TreeNode({self.student})"
+    
 
 
 class NullNode(TreeNodeInterface):
