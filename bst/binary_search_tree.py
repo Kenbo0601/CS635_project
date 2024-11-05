@@ -1,5 +1,6 @@
 from tree_nodes import TreeNode, NullNode
 
+
 class BinarySearchTree:
     def __init__(self, comparator):
         self.root = NullNode()
@@ -23,12 +24,16 @@ class BinarySearchTree:
             else:
                 self._add_recursive(node.right, student)
 
-    def iterate(self, func):
-        self._iterate_recursive(self.root, func)
 
-    def _iterate_recursive(self, node, func):
+    # Internal Iterator Implementation 
+    def for_each(self, action):
+        self._for_each_recursive(self.root, action)
+
+    # recursive helper function for for_each method 
+    def _for_each_recursive(self, node, action):
         if node.is_null():
             return
-        self._iterate_recursive(node.left, func)
-        func(node.student)
-        self._iterate_recursive(node.right, func)
+        # inorder traversal 
+        self._for_each_recursive(node.left, action)
+        action(node.student)
+        self._for_each_recursive(node.right, action)
