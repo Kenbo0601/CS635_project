@@ -1,9 +1,6 @@
 from student_data import Student, Comparator
 from binary_search_tree import BinarySearchTree
-#from tree_visitors import TreeVisitor
-from null_node_counter import NullNodeCounter
-from path_metrics_visitor import PathMetricsVisitor
-
+from tree_visitors import VisitorInterface, NullNodeCounter, PathMetricsVisitor
 
 def main():
     # Create students
@@ -46,19 +43,16 @@ def apply_visitors(bst):
     """
     Applies visitor objects to the BST to count null nodes, compute longest path, and calculate average path length.
     """
-    # Count null nodes using NullNodeCounter
-    null_counter = NullNodeCounter()
-    null_counter.visit(bst.root)
-    print("Number of null nodes:", null_counter.get_null_count())
+    # Use NullNodeCounter visitor
+    null_node_counter: VisitorInterface = NullNodeCounter()
+    null_node_counter.visit(bst.root)
+    print("\nNumber of null nodes:", null_node_counter.get_null_count())
 
-    # Compute path metrics using PathMetricsVisitor
-    path_metrics = PathMetricsVisitor()
-    path_metrics.visit(bst.root)
-    longest_path = path_metrics.get_longest_path()
-    average_path_length = path_metrics.get_average_path_length()
-
-    print("Longest path length:", longest_path)
-    print("Average path length:", average_path_length)
+    # Use PathMetricsVisitor
+    path_metrics_visitor: VisitorInterface = PathMetricsVisitor()
+    path_metrics_visitor.visit(bst.root)
+    print("Longest path length:", path_metrics_visitor.get_longest_path())
+    print("Average path length:", path_metrics_visitor.get_average_path_length())
 
 
 if __name__ == '__main__':
