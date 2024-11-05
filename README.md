@@ -17,9 +17,10 @@
   -  Project Structure
       ```
       project/
-      ├── tree_nodes.py         # Contains TreeNodeInterface, TreeNode, NullNode
-      ├── student_data.py       # Contains Student and Comparator
-      ├── binary_search_tree.py # Contains BinarySearchTree
-      ├── tree_visitors.py      # Contains TreeVisitor
-      └── main.py               # Entry point for using the Binary Search Tree and visitors
+      ├── binary_search_tree.py  # Defines the BinarySearchTree class with internal iterator and strategy pattern
+      ├── main.py                # Entry point for using the Binary Search Tree and applying visitors
+      ├── null_node_counter.py   # Visitor class to count NullNodes in the BST
+      ├── path_metrics_visitor.py # Visitor class to calculate longest and average path length in the BST
+      ├── student_data.py        # Defines the Student class and Comparator for sorting strategies
+      ├── tree_nodes.py          # Defines TreeNode, NullNode, and TreeNodeInterface for Null Object pattern
       ```
