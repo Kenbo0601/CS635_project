@@ -7,18 +7,6 @@ class Student:
 
     def __repr__(self):
         return f"Student({self.first_name} {self.last_name}, ID: {self.red_id}, GPA: {self.gpa})"
-    
-    def get_first_name(self):
-        return self.first_name
-
-    def get_last_name(self):
-        return self.last_name
-
-    def get_red_id(self):
-        return self.red_id
-
-    def get_gpa(self):
-        return self.gpa
 
 
 class Comparator:

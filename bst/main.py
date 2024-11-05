@@ -27,18 +27,11 @@ def iterator_test(bst):
 
     # Use a lambda function to print each node's data
     print("In-order traversal output:")
-    bst.for_each(lambda student: 
-                 print(
-                        student.get_first_name(), 
-                        student.get_last_name(),
-                        student.get_red_id(),
-                        student.get_gpa()
-                    )
-                )
+    bst.for_each(lambda student: print(student))
 
     # Use a lambda function to collect all nodes' values in a list
     node_values = []
-    bst.for_each(lambda x: node_values.append(x))
+    bst.for_each(lambda student: node_values.append(student))
     print("\nCollected node values:", node_values)
 
     return 
