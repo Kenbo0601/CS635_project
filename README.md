@@ -19,8 +19,7 @@
       project/
       ├── binary_search_tree.py  # Defines the BinarySearchTree class with internal iterator and strategy pattern
       ├── main.py                # Entry point for using the Binary Search Tree and applying visitors
-      ├── null_node_counter.py   # Visitor class to count NullNodes in the BST
-      ├── path_metrics_visitor.py # Visitor class to calculate longest and average path length in the BST
+      ├── tree_visitors.py       # Contains TreeVisitor
       ├── student_data.py        # Defines the Student class and Comparator for sorting strategies
       ├── tree_nodes.py          # Defines TreeNode, NullNode, and TreeNodeInterface for Null Object pattern
       ```
