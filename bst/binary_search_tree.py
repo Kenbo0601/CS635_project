@@ -37,3 +37,7 @@ class BinarySearchTree:
         self._for_each_recursive(node.left, action)
         action(node.student)
         self._for_each_recursive(node.right, action)
+    
+
+    def accept(self, visitor):
+        return self.root.accept(visitor)
