@@ -30,7 +30,8 @@ def order_tree_by_redId(students, strategy):
     bst.set_strategy(strategy)
 
     for student in students:
-        bst.add(student)
+        #bst.add(student)
+        bst.insert(student)
 
     # Unit test - Internal Iterator 
     iterator_test(bst)
@@ -45,7 +46,7 @@ def order_tree_by_name(students, strategy):
     bst.set_strategy(strategy)
     
     for student in students:
-        bst.add(student)
+        bst.insert(student)
 
     # Unit test - Internal Iterator 
     iterator_test(bst)
@@ -60,7 +61,8 @@ def order_tree_by_gpa(students, strategy):
     bst.set_strategy(strategy)
     
     for student in students:
-        bst.add(student)
+        #bst.add(student)
+        bst.insert(student)
 
     # Unit test - Internal Iterator 
     iterator_test(bst)
