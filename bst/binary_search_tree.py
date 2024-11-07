@@ -1,10 +1,12 @@
 from tree_nodes import TreeNode, NullNode
-
+from comparator import ComparatorStrategy
 
 class BinarySearchTree:
-    def __init__(self, comparator):
+    def __init__(self):
         self.root = NullNode()
-        self.comparator = comparator
+    
+    def set_strategy(self, strategy: ComparatorStrategy):
+        self.strategy = strategy
 
     def add(self, student):
         if self.root.is_null():
@@ -13,7 +15,7 @@ class BinarySearchTree:
             self._add_recursive(self.root, student)
 
     def _add_recursive(self, node, student):
-        if self.comparator(student, node.student) < 0:
+        if self.strategy.compare(student, node.student) < 0:
             if node.left.is_null():
                 node.left = TreeNode(student)
             else:

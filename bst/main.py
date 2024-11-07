@@ -1,4 +1,5 @@
-from student_data import Student, Comparator
+from student import Student
+from comparator import ComparatorStrategy, ByNameComparator, ByRedIdComarator, ByRoundedGPAComparator
 from binary_search_tree import BinarySearchTree
 from tree_visitors import VisitorInterface, NullNodeCounter, PathMetricsVisitor
 
@@ -12,7 +13,15 @@ def main():
     ]
 
     # Create a tree using a specific comparator, e.g., by Red ID
-    bst = BinarySearchTree(Comparator.by_red_id)
+    redIdComparator = ByRedIdComarator()
+    nameComparator = ByNameComparator()
+    gpaComparator = ByRoundedGPAComparator()
+
+    bst = BinarySearchTree()
+    #bst.set_strategy(redIdComparator)
+    #bst.set_strategy(nameComparator)
+    bst.set_strategy(gpaComparator)
+
     for student in students:
         bst.add(student)
 
