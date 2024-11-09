@@ -10,11 +10,12 @@ class BinarySearchTree:
         self.strategy = strategy
 
     def insert(self, student):
-        self.root = self.factory.insert(self.root, student, self.strategy)
+        self.root = self.root.insert(student, self.strategy)
 
     # Internal Iterator Implementation 
     def for_each(self, action):
-        self.factory.for_each_recursive(self.root, action)
+        self.root.for_each(action)
+        #self.factory.for_each_recursive(self.root, action)
 
     def accept(self, visitor):
         return self.root.accept(visitor)
