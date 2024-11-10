@@ -30,8 +30,8 @@ class TreeNodeInterface(ABC):
 class TreeNode(TreeNodeInterface):
     def __init__(self, student=None, left=None, right=None):
         self.student = student
-        self.left = left if left else NullNode()
-        self.right = right if right else NullNode()
+        self.left = NullNode()
+        self.right = NullNode()
 
     def is_null(self):
         return False
@@ -77,44 +77,3 @@ class NullNode(TreeNodeInterface):
     def for_each(self, action):
         # Do nothing since this is a null node
         pass
-
-
-# Node factory class - handles operations for tree 
-class NodeFactory:
-    def create_node(self, student):
-        return TreeNode(student)
-    
-    def create_null_node(self):
-        return NullNode()
-    
-    def insert(self, node, student, strategy):
-        if node.is_null():
-            return self.create_node(student)
-        else:
-            return self._insert(node, student, strategy) 
-
-    def _insert(self, node, student, strategy):
-        if strategy.compare(student, node.student) < 0:
-            if node.left.is_null():
-                node.left = self.create_node(student)
-            else:
-                self._insert(node.left, student, strategy)
-        else:
-            if node.right.is_null():
-                node.right = self.create_node(student)
-            else:
-                self._insert(node.right, student, strategy)
-        return node
-    
-    def for_each_recursive(self, node, action):
-        if node.is_null():
-            return
-
-        # inorder traversal 
-        self.for_each_recursive(node.left, action)
-        action(node.student)
-        self.for_each_recursive(node.right, action)
-        return 
-
-        
-    

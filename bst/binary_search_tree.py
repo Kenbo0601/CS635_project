@@ -1,10 +1,9 @@
-from tree_nodes import TreeNode, NullNode, NodeFactory
+from tree_nodes import TreeNode, NullNode
 from comparator import ComparatorStrategy
 
 class BinarySearchTree:
     def __init__(self):
-        self.factory = NodeFactory() 
-        self.root = self.factory.create_null_node()
+        self.root = NullNode()
     
     def set_strategy(self, strategy: ComparatorStrategy):
         self.strategy = strategy
@@ -15,7 +14,6 @@ class BinarySearchTree:
     # Internal Iterator Implementation 
     def for_each(self, action):
         self.root.for_each(action)
-        #self.factory.for_each_recursive(self.root, action)
 
     def accept(self, visitor):
         return self.root.accept(visitor)
