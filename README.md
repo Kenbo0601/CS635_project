@@ -16,10 +16,11 @@
      -  Visitor
   -  Project Structure
       ```
-      project/
-      ├── binary_search_tree.py  # Defines the BinarySearchTree class with internal iterator and strategy pattern
-      ├── main.py                # Entry point for using the Binary Search Tree and applying visitors
-      ├── tree_visitors.py       # Contains TreeVisitor
-      ├── student_data.py        # Defines the Student class and Comparator for sorting strategies
-      ├── tree_nodes.py          # Defines TreeNode, NullNode, and TreeNodeInterface for Null Object pattern
+     project/
+     ├── binary_search_tree.py  # Defines the BinarySearchTree class with internal iterator and strategy pattern
+     ├── main.py                # Entry point for using the Binary Search Tree and applying visitors
+     ├── tree_visitors.py       # Contains TreeVisitor for traversing or manipulating tree nodes
+     ├── student.py             # Defines the Student class
+     ├── comparator.py          # Contains Comparator class for sorting strategies
+     ├── tree_nodes.py          # Defines TreeNode, NullNode, and TreeNodeInterface for Null Object pattern
       ```
